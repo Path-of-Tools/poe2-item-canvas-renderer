@@ -2,10 +2,10 @@
   "name": "poe2-item",
   "version": "1.0.0",
   "type": "module",
-  "main": "index.js",
+  "main": "renderer.js",
   "license": "MIT",
   "dependencies": {
     "canvas": "^3.0.1",
-    "poe-item-parser": "file:../poe-item-parser"
+    "poe-item-parser": "poe-item-parser"
   }
 }

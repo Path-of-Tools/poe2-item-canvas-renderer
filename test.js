@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import path from 'path'
 
 import { PoE2ItemParser } from 'poe-item-parser'
-import { renderItem } from './image.js'
+import { renderItem } from './renderer.js'
 
 async function readTxtFiles(folderPath) {
   const filesArray = []
@@ -32,6 +32,8 @@ async function main() {
   for (const item of items) {
     const parsedItem = new PoE2ItemParser(item.content)
     const canvas = await renderItem(parsedItem.getItem())
+
+    fs.writeFileSync(`./out_parsed/${item.fileName}.json`, JSON.stringify(parsedItem.getItem(), null, 2))
 
     const out = fs.createWriteStream(`./out/${item.fileName}.png`)
     const stream = canvas.createPNGStream()

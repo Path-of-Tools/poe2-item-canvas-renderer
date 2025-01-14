@@ -1,14 +1,12 @@
 import { registerFont, createCanvas, loadImage } from 'canvas'
 import * as fs from 'fs'
 
-const headerHeight = 55
-const headerWidth = 47
 const headerMargin = 10
 const horizontalMargin = 40
 const fontHeight = 18
 const lineHeight = 20
-const nameOffset = 2
-const nameFontHeight = 24
+const nameOffset = 3
+const nameFontHeight = 23
 const separatorWidth = 221
 const separatorHeight = 8
 const separatorMarginTop = 4
@@ -20,6 +18,7 @@ const color = {
   enchant: '#b4b4ff',
   affix: '#8888ff',
   corrupted: '#d20000',
+  currency: '#aa9e82',
   normal: '#ac8c8c8',
   magic: '#8888ff',
   rare: '#ffff77',
@@ -65,6 +64,18 @@ function resizeCanvasWithoutClearing(canvas, newWidth, newHeight) {
 export async function renderItem(item) {
   registerFont('assets/fontin-smallcaps-webfont.ttf', { family: 'FontinSmallCaps' })
   const separator = await loadImage(`assets/separator-${item.itemRarity}.png`)
+  const headerMiddle = await loadImage(`assets/header-${item.itemRarity}-middle.png`)
+  const headerLeft = await loadImage(`assets/header-${item.itemRarity}-left.png`)
+  const headerRight = await loadImage(`assets/header-${item.itemRarity}-right.png`)
+
+  let headerHeight = headerLeft.height
+  let headerWidth = headerLeft.width
+
+  if (![ 'Rare', 'Unique' ].includes(item.itemRarity)) {
+    headerHeight = (headerHeight/1.5)
+    headerWidth = (headerWidth/1.5)
+  }
+
 
   const canvas = createCanvas(1200, 1200)
   const ctx = canvas.getContext('2d')
@@ -171,14 +182,16 @@ export async function renderItem(item) {
   }
 
   // separator
-  currentY = currentY + separatorMarginTop
-  ctx.drawImage(separator, (canvas.width/2)-(separatorWidth/2), currentY)
-  currentY = currentY + separatorMarginBottom
+  if (item.itemLevel) {
+    currentY = currentY + separatorMarginTop
+    ctx.drawImage(separator, (canvas.width/2)-(separatorWidth/2), currentY)
+    currentY = currentY + separatorMarginBottom
 
-  // requirements
-  ctx.fillStyle = color.white
-  ctx.fillText(`Item Level: ${item.itemLevel ?? 1}`, canvas.width/2, currentY)
-  currentY += lineHeight
+    // requirements
+    ctx.fillStyle = color.white
+    ctx.fillText(`Item Level: ${item.itemLevel}`, canvas.width/2, currentY)
+    currentY += lineHeight
+  }
 
   if (item.requirements.level || item.requirements.intelligence || item.requirements.strength || item.requirements.dexterity) {
     ctx.fillStyle = color.grey
@@ -308,34 +321,23 @@ export async function renderItem(item) {
     }
   }
 
-  // draw header
-  const headerMiddle = await loadImage(`assets/header-${item.itemRarity}-middle.png`)
-  const headerLeft = await loadImage(`assets/header-${item.itemRarity}-left.png`)
-  const headerRight = await loadImage(`assets/header-${item.itemRarity}-right.png`)
-
   // draw headerMiddle repeatingly until it doesn't fit anymore
   let headerMiddleX = 0
   while (headerMiddleX < canvas.width) {
-    ctx.drawImage(headerMiddle, headerMiddleX, 0)
-    headerMiddleX += headerWidth
+    ctx.drawImage(headerMiddle, headerMiddleX, 0, headerWidth, headerHeight)
+    headerMiddleX += headerWidth-1
   }
 
-  ctx.drawImage(headerLeft, 0, 0)
-  ctx.drawImage(headerRight, canvas.width-headerWidth, 0)
+  ctx.drawImage(headerLeft, 0, 0, headerWidth, headerHeight)
+  ctx.drawImage(headerRight, canvas.width-headerWidth, 0, headerWidth, headerHeight)
 
   // item name
   const nameColor = item.itemRarity === 'Unique' ? color.uniqueName : color[item.itemRarity.toLowerCase()]
   ctx.fillStyle = nameColor
   ctx.font = `${nameFontHeight}px FontinSmallCaps`
 
-  if (item.itemName.lines.length === 1) {
-    ctx.fillText(item.itemName.lines[0], canvas.width/2, (nameFontHeight/2))
-  }
-
-  if (item.itemName.lines.length === 2) {
-    ctx.fillText(item.itemName.lines[0], canvas.width/2, nameOffset)
-    ctx.fillText(item.itemName.lines[1], canvas.width/2, nameFontHeight-nameOffset)
-  }
+  ctx.fillText(item.itemName.lines[0], canvas.width/2, nameOffset)
+  item.itemName.lines[1] && ctx.fillText(item.itemName.lines[1], canvas.width/2, nameFontHeight-nameOffset)
 
   resizeCanvasWithoutClearing(canvas, canvas.width, currentY + headerMargin)
 

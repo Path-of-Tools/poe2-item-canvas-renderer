@@ -1,0 +1,10 @@
+Item Class: Relics
+Rarity: Magic
+Punishing Incense Relic of Bestowing
+--------
+Item Level: 79
+--------
+Monsters take 19% increased Damage
+Restore 57 Honour on picking up a Key
+--------
+Place this item on the Relic Altar at the start of the Trial of the Sekhemas
