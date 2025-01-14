@@ -166,7 +166,7 @@ export async function renderItem(item) {
   ]) {
     if (line.value) {
       const name = `${line.name}: `
-      const value = Array.isArray(line.value) ? `${line.value[0].min} - ${line.value[0].max}` : line.value
+      const value = Array.isArray(line.value) ? `${line.value[0].min}-${line.value[0].max}` : line.value
       const nameWidth = ctx.measureText(name).width
       const valueWidth = ctx.measureText(value).width
       const increaseTest = line.alt ?? line.name
