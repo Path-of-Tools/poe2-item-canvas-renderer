@@ -143,7 +143,7 @@ once@^1.3.1, once@^1.4.0:
   dependencies:
     wrappy "1"
 
-poe-item-parser@poe-item-parser:
+poe-item-parser@^1.0:
   version "1.0.20"
   resolved "https://registry.yarnpkg.com/poe-item-parser/-/poe-item-parser-1.0.20.tgz#c5cf3272110c3cca782d9b367f331d2c456781c0"
   integrity sha512-54XOE1OxPSxQqrllY3pPp6QTZMTrj4gHDavRWM1CJkaf3xYu9n/GcVhJZ7KJUIy4iTAQw+Enc29aIoIN+53UmQ==
