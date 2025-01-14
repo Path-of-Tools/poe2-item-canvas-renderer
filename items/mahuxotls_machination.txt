@@ -1,0 +1,27 @@
+Item Class: Shields
+Rarity: Unique
+Mahuxotl's Machination
+Omen Crest Shield
+--------
+Quality: +20% (augmented)
+Block chance: 25%
+Armour: 400 (augmented)
+Energy Shield: 152 (augmented)
+--------
+Requirements:
+Level: 48
+Str: 37
+Int: 37
+--------
+Sockets: S S S
+--------
+Item Level: 82
+--------
+30% increased Rarity of Items found (rune)
+--------
+566% increased Armour and Energy Shield
+627% increased effect of Socketed Soul Cores
+--------
+The Banished Architect sought to employ the darkest secrets of the Vaal.
+--------
+Corrupted

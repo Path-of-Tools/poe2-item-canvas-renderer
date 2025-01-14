@@ -1,0 +1,29 @@
+Item Class: Helmets
+Rarity: Unique
+Atziri's Disdain
+Gold Circlet
+--------
+Quality: +20% (augmented)
+Energy Shield: 70 (augmented)
+--------
+Requirements:
+Level: 40
+Int: 74
+--------
+Sockets: S
+--------
+Item Level: 79
+--------
++24 to Spirit (enchant)
+--------
+2% increased maximum Mana (rune)
+--------
++57 to maximum Mana
+18% increased Rarity of Items found
+24% of Damage taken bypasses Energy Shield
+Gain 30% of Maximum Life as Extra Maximum Energy Shield
+--------
+They screamed her name in adulation as they gave
+their very lives. She looked on with impatience.
+--------
+Corrupted

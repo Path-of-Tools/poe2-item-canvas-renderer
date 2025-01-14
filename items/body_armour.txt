@@ -1,0 +1,26 @@
+Item Class: Body Armours
+Rarity: Rare
+Golem Hide
+Expert Hexer's Robe
+--------
+Quality: +20% (augmented)
+Energy Shield: 820 (augmented)
+--------
+Requirements:
+Level: 65
+Int: 157
+--------
+Sockets: S S S
+--------
+Item Level: 80
+--------
+60% increased Armour, Evasion and Energy Shield (rune)
+--------
++86 to maximum Energy Shield
+93% increased Energy Shield
++193 to maximum Life
++35% to Fire Resistance
++40% to Cold Resistance
++64 to Stun Threshold
+--------
+Corrupted

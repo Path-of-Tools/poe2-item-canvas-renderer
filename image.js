@@ -28,10 +28,6 @@ const color = {
   quest: '#4ae63a',
 }
 
-const state = {
-  y: 0,
-}
-
 function isBaseValueIncreased(item, name) {
   if (name !== 'Reduced Attribute Requirements' && name !== 'Block Chance' && item.quality && item.quality > 0) {
     return true
@@ -73,7 +69,7 @@ export async function renderItem(item) {
   const canvas = createCanvas(1200, 1200)
   const ctx = canvas.getContext('2d')
 
-  state.y = headerHeight + headerMargin
+  let currentY = headerHeight + headerMargin
 
   // measure width
   let linesMaxWidth = 0
@@ -123,8 +119,8 @@ export async function renderItem(item) {
   // draw item class
   ctx.fillStyle = color.grey
 
-  ctx.fillText(item.itemClass, canvas.width/2, state.y)
-  state.y += lineHeight
+  ctx.fillText(item.itemClass, canvas.width/2, currentY)
+  currentY += lineHeight
 
   // draw quality
   if (item.quality && item.quality > 0) {
@@ -134,11 +130,11 @@ export async function renderItem(item) {
     const mainTextWidth = ctx.measureText(mainText).width
     const qualityTextWidth = ctx.measureText(qualityText).width
 
-    ctx.fillText(mainText, (canvas.width/2)-(qualityTextWidth/2), state.y)
+    ctx.fillText(mainText, (canvas.width/2)-(qualityTextWidth/2), currentY)
     ctx.fillStyle = color.affix
-    ctx.fillText(qualityText, (canvas.width/2)+(mainTextWidth/2), state.y)
+    ctx.fillText(qualityText, (canvas.width/2)+(mainTextWidth/2), currentY)
 
-    state.y += lineHeight
+    currentY += lineHeight
   }
 
   // draw base stats
@@ -165,24 +161,24 @@ export async function renderItem(item) {
       const valueWidth = ctx.measureText(value).width
       const increaseTest = line.alt ?? line.name
 
-      ctx.fillText(name, (canvas.width/2)-(valueWidth/2), state.y)
+      ctx.fillText(name, (canvas.width/2)-(valueWidth/2), currentY)
       ctx.fillStyle = isBaseValueIncreased(item, increaseTest) ? color.affix : color.white
-      ctx.fillText(value, (canvas.width/2)+(nameWidth/2), state.y)
+      ctx.fillText(value, (canvas.width/2)+(nameWidth/2), currentY)
       ctx.fillStyle = color.grey
 
-      state.y += lineHeight
+      currentY += lineHeight
     }
   }
 
   // separator
-  state.y = state.y + separatorMarginTop
-  ctx.drawImage(separator, (canvas.width/2)-(separatorWidth/2), state.y)
-  state.y = state.y + separatorMarginBottom
+  currentY = currentY + separatorMarginTop
+  ctx.drawImage(separator, (canvas.width/2)-(separatorWidth/2), currentY)
+  currentY = currentY + separatorMarginBottom
 
   // requirements
   ctx.fillStyle = color.white
-  ctx.fillText(`Item Level: ${item.itemLevel ?? 1}`, canvas.width/2, state.y)
-  state.y += lineHeight
+  ctx.fillText(`Item Level: ${item.itemLevel ?? 1}`, canvas.width/2, currentY)
+  currentY += lineHeight
 
   if (item.requirements.level || item.requirements.intelligence || item.requirements.strength || item.requirements.dexterity) {
     ctx.fillStyle = color.grey
@@ -202,112 +198,112 @@ export async function renderItem(item) {
     const dexWidth = item.requirements.dexterity ? ctx.measureText(dex).width : 0
     const intWidth = item.requirements.intelligence ? ctx.measureText(int).width : 0
 
-    ctx.fillText(base, (canvas.width/2)-(levelWidth/2)-(strWidth/2)-(dexWidth/2)-(intWidth/2), state.y)
+    ctx.fillText(base, (canvas.width/2)-(levelWidth/2)-(strWidth/2)-(dexWidth/2)-(intWidth/2), currentY)
 
     if (item.requirements.level) {
       ctx.fillStyle = color.white
-      ctx.fillText(level, (canvas.width/2)+(baseWidth/2)-(strWidth/2)-(dexWidth/2)-(intWidth/2), state.y)
+      ctx.fillText(level, (canvas.width/2)+(baseWidth/2)-(strWidth/2)-(dexWidth/2)-(intWidth/2), currentY)
     }
 
     if (item.requirements.strength) {
       ctx.fillStyle = isBaseValueIncreased(item, 'Reduced Attribute Requirements') ? color.affix : color.white
-      ctx.fillText(str, (canvas.width/2)+(baseWidth/2)+(levelWidth/2)-(dexWidth/2)-(intWidth/2), state.y)
+      ctx.fillText(str, (canvas.width/2)+(baseWidth/2)+(levelWidth/2)-(dexWidth/2)-(intWidth/2), currentY)
     }
 
     if (item.requirements.dexterity) {
       ctx.fillStyle = isBaseValueIncreased(item, 'Reduced Attribute Requirements') ? color.affix : color.white
-      ctx.fillText(dex, (canvas.width/2)+(baseWidth/2)+(levelWidth/2)+(strWidth/2)-(intWidth/2), state.y)
+      ctx.fillText(dex, (canvas.width/2)+(baseWidth/2)+(levelWidth/2)+(strWidth/2)-(intWidth/2), currentY)
     }
 
     if (item.requirements.intelligence) {
       ctx.fillStyle = isBaseValueIncreased(item, 'Reduced Attribute Requirements') ? color.affix : color.white
-      ctx.fillText(int, (canvas.width/2)+(baseWidth/2)+(levelWidth/2)+(strWidth/2)+(dexWidth/2), state.y)
+      ctx.fillText(int, (canvas.width/2)+(baseWidth/2)+(levelWidth/2)+(strWidth/2)+(dexWidth/2), currentY)
     }
 
-    state.y += lineHeight
+    currentY += lineHeight
   }
 
   // separator
-  state.y = state.y + separatorMarginTop
-  ctx.drawImage(separator, (canvas.width/2)-(separatorWidth/2), state.y)
-  state.y = state.y + separatorMarginBottom
+  currentY = currentY + separatorMarginTop
+  ctx.drawImage(separator, (canvas.width/2)-(separatorWidth/2), currentY)
+  currentY = currentY + separatorMarginBottom
 
   // enchants
   if (item.enchants.length) {
     ctx.fillStyle = color.enchant
     for (const line of item.enchants) {
-      ctx.fillText(line, canvas.width/2, state.y)
-      state.y += lineHeight
+      ctx.fillText(line, canvas.width/2, currentY)
+      currentY += lineHeight
     }
 
     // separator
-    state.y = state.y + separatorMarginTop
-    ctx.drawImage(separator, (canvas.width/2)-(separatorWidth/2), state.y)
-    state.y = state.y + separatorMarginBottom
+    currentY = currentY + separatorMarginTop
+    ctx.drawImage(separator, (canvas.width/2)-(separatorWidth/2), currentY)
+    currentY = currentY + separatorMarginBottom
   }
 
   // runes
   if (item.runes.length) {
     ctx.fillStyle = color.enchant
     for (const line of item.runes) {
-      ctx.fillText(line, canvas.width/2, state.y)
-      state.y += lineHeight
+      ctx.fillText(line, canvas.width/2, currentY)
+      currentY += lineHeight
     }
 
     // separator
-    state.y = state.y + separatorMarginTop
-    ctx.drawImage(separator, (canvas.width/2)-(separatorWidth/2), state.y)
-    state.y = state.y + separatorMarginBottom
+    currentY = currentY + separatorMarginTop
+    ctx.drawImage(separator, (canvas.width/2)-(separatorWidth/2), currentY)
+    currentY = currentY + separatorMarginBottom
   }
 
   // implicits
   if (item.implicits.length) {
     ctx.fillStyle = color.affix
     for (const line of item.implicits) {
-      ctx.fillText(line, canvas.width/2, state.y)
-      state.y += lineHeight
+      ctx.fillText(line, canvas.width/2, currentY)
+      currentY += lineHeight
     }
 
     // separator
-    state.y = state.y + separatorMarginTop
-    ctx.drawImage(separator, (canvas.width/2)-(separatorWidth/2), state.y)
-    state.y = state.y + separatorMarginBottom
+    currentY = currentY + separatorMarginTop
+    ctx.drawImage(separator, (canvas.width/2)-(separatorWidth/2), currentY)
+    currentY = currentY + separatorMarginBottom
   }
 
   // draw affixes
   ctx.fillStyle = color.affix
 
   for (const line of item.affixes) {
-    ctx.fillText(line, canvas.width/2, state.y)
-    state.y += lineHeight
+    ctx.fillText(line, canvas.width/2, currentY)
+    currentY += lineHeight
   }
 
   // corrupted
   if (item.corrupted) {
     // separator
-    state.y = state.y + separatorMarginTop
-    ctx.drawImage(separator, (canvas.width/2)-(separatorWidth/2), state.y)
-    state.y = state.y + separatorMarginBottom
+    currentY = currentY + separatorMarginTop
+    ctx.drawImage(separator, (canvas.width/2)-(separatorWidth/2), currentY)
+    currentY = currentY + separatorMarginBottom
 
     ctx.fillStyle = color.corrupted
-    ctx.fillText('Corrupted', canvas.width/2, state.y)
-    state.y += lineHeight
+    ctx.fillText('Corrupted', canvas.width/2, currentY)
+    currentY += lineHeight
   }
 
   if (item.flavorText) {
     // separator
-    state.y = state.y + separatorMarginTop
-    ctx.drawImage(separator, (canvas.width/2)-(separatorWidth/2), state.y)
-    state.y = state.y + separatorMarginBottom
+    currentY = currentY + separatorMarginTop
+    ctx.drawImage(separator, (canvas.width/2)-(separatorWidth/2), currentY)
+    currentY = currentY + separatorMarginBottom
 
     ctx.fillStyle = color.unique
     for (const line of item.flavorText.split('\n')) {
       const skewAngle = -0.3
       ctx.save()
       ctx.transform(1, 0, skewAngle, 1, 0, 0)
-      const adjustedX = ((canvas.width/2) - skewAngle * (state.y - lineHeight / 2)) + 5
-      ctx.fillText(line, adjustedX, state.y)
-      state.y += lineHeight
+      const adjustedX = ((canvas.width/2) - skewAngle * (currentY - lineHeight / 2)) + 5
+      ctx.fillText(line, adjustedX, currentY)
+      currentY += lineHeight
       ctx.restore()
     }
   }
@@ -341,10 +337,7 @@ export async function renderItem(item) {
     ctx.fillText(item.itemName.lines[1], canvas.width/2, nameFontHeight-nameOffset)
   }
 
-  resizeCanvasWithoutClearing(canvas, canvas.width, state.y + headerMargin)
+  resizeCanvasWithoutClearing(canvas, canvas.width, currentY + headerMargin)
 
-  const out = fs.createWriteStream(`out/${item.itemName.name}.png`)
-  const stream = canvas.createPNGStream()
-  stream.pipe(out)
-  // out.on('finish', () => console.log('The PNG file was created.'))
+  return canvas
 }

@@ -1,0 +1,27 @@
+Item Class: Body Armours
+Rarity: Unique
+Foxshade
+Quilted Vest
+--------
+Quality: +20% (augmented)
+Evasion Rating: 127 (augmented)
+--------
+Requirements:
+Dexterity: 10
+--------
+Sockets: S S S
+--------
+Item Level: 7
+--------
++12% to Fire Resistance (rune)
++12% to Cold Resistance (rune)
++12% to Lightning Resistance (rune)
+--------
++62 to Evasion Rating
++30 to Dexterity
+10% increased Movement Speed when on Full Life
+100% increased Evasion Rating when on Full Life
+--------
+To catch an animal, think like an animal.
+--------
+Corrupted

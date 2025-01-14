@@ -1,0 +1,21 @@
+Item Class: Quarterstaves
+Rarity: Rare
+Gale Call
+Expert Crackling Quarterstaff
+--------
+Physical Damage: 43-51 (augmented)
+Lightning Damage: 46-224 (augmented)
+Critical Hit Chance: 10.00%
+Attacks per Second: 1.40
+--------
+Requirements:
+Level: 78
+Dex: 165 (unmet)
+Int: 64
+--------
+Item Level: 78
+--------
+Adds 43 to 51 Physical Damage
+Adds 3 to 52 Lightning Damage
++153 to Accuracy Rating
+Causes 55% increased Stun Buildup

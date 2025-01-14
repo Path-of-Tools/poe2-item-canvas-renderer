@@ -1,0 +1,21 @@
+Item Class: Belts
+Rarity: Unique
+Zerphi's Genesis
+Heavy Belt
+--------
+Charm Slots: 3 (augmented)
+--------
+Requirements:
+Level: 56
+--------
+Item Level: 82
+--------
+23% increased Stun Threshold (implicit)
+--------
++2 Charm Slots
++26 to Strength
+Corrupted Blood cannot be inflicted on you
+50% of charges used by Charms granted to your Life Flasks
+27% increased Charm Charges used
+--------
+The most horrifying ideas often begin with a simple innovation.

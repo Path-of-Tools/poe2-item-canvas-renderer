@@ -1,0 +1,24 @@
+Item Class: Body Armours
+Rarity: Unique
+Temporalis
+Silk Robe
+--------
+Quality: +20% (augmented)
+Energy Shield: 244 (augmented)
+--------
+Requirements:
+Level: 64
+Int: 47
+--------
+Sockets: S S
+--------
+Item Level: 82
+--------
++142 to maximum Energy Shield
++14% to all Elemental Resistances
+15% of Damage taken Recouped as Life
+27% of Damage taken Recouped as Mana
+Skills have -2.96 seconds to Cooldown
+--------
+The final element the tale-women
+mastered was Time itself.

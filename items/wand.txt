@@ -1,0 +1,19 @@
+Item Class: Wands
+Rarity: Rare
+Spirit Call
+Siphoning Wand
+--------
+Quality: +20% (augmented)
+--------
+Requirements:
+Level: 78
+Int: 178
+--------
+Item Level: 81
+--------
+Gain 27% of Damage as Extra Cold Damage
+81% increased Spell Damage
+77% increased Lightning Damage
++5 to Level of all Lightning Spell Skills
+53% increased Mana Regeneration Rate
+70% increased chance to Shock
