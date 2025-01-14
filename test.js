@@ -33,7 +33,7 @@ async function main() {
     const parsedItem = new PoE2ItemParser(item.content)
     const canvas = await renderItem(parsedItem.getItem())
 
-    fs.writeFileSync(`./out_parsed/${item.fileName}.json`, JSON.stringify(parsedItem.getItem(), null, 2))
+    await fsa.writeFile(`./out_parsed/${item.fileName}.json`, JSON.stringify(parsedItem.getItem(), null, 2))
 
     const out = fs.createWriteStream(`./out/${item.fileName}.png`)
     const stream = canvas.createPNGStream()
