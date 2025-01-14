@@ -1,0 +1,24 @@
+Item Class: Crossbows
+Rarity: Rare
+Hate Core
+Expert Bombard Crossbow
+--------
+Physical Damage: 36-146 (augmented)
+Critical Hit Chance: 5.00%
+Attacks per Second: 1.65
+Reload Time: 0.75
+--------
+Requirements:
+Level: 79
+Str: 116 (unmet)
+Dex: 116 (unmet)
+--------
+Item Level: 82
+--------
+Grenade Skills Fire an additional Projectile (implicit)
+--------
+51% increased Physical Damage
++108 to Accuracy Rating
+Grants 5 Life per Enemy Hit
+Gain 81 Life per Enemy Killed
+Gain 15 Mana per Enemy Killed

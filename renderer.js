@@ -27,9 +27,72 @@ const color = {
   quest: '#4ae63a',
 }
 
+function limitFlavorText(flavorText) {
+  // nothing to do
+  if (!flavorText || flavorText.flavorText.length <= 90 || flavorText.lines.length > 1) {
+    return flavorText;
+  }
+
+  const words = flavorText.flavorText.split(' ')
+  const lines = []
+  let currentLine = ''
+
+  for (const word of words) {
+    const testLine = currentLine ? `${currentLine} ${word}` : word
+    if (testLine.length > 90) {
+      lines.push(currentLine)
+      currentLine = word
+    } else {
+      currentLine = testLine
+    }
+  }
+
+  if (currentLine) {
+    lines.push(currentLine)
+  }
+
+  return { flavorText: flavorText.flavorText, lines }
+}
+
+function limitText(array) {
+  const result = []
+
+  for (const text of array) {
+    // nothing to do
+    if (!text || text.length <= 88) {
+      result.push(text)
+      continue
+    }
+
+    const words = text.split(' ')
+    let currentLine = ''
+
+    for (const word of words) {
+      const testLine = currentLine ? `${currentLine} ${word}` : word
+      if (testLine.length > 88) {
+        result.push(currentLine)
+        currentLine = word
+      } else {
+        currentLine = testLine
+      }
+    }
+
+    if (currentLine) {
+      result.push(currentLine)
+    }
+  }
+
+  return result
+}
+
 function isBaseValueIncreased(item, name) {
   if (name !== 'Reduced Attribute Requirements' && name !== 'Block Chance' && item.quality && item.quality > 0) {
     return true
+  }
+
+  // unscaleable value
+  if (name === 'Radius') {
+    return false
   }
 
   const toCheck = [
@@ -86,10 +149,11 @@ export async function renderItem(item) {
 
   ctx.font = `${fontHeight}px FontinSmallCaps`
 
+  item.flavorText = limitFlavorText(item.flavorText)
   const flavorSplit = item.flavorText?.lines ?? []
 
   const measureLines = [
-    ...item.affixes,
+    ...limitText(item.affixes),
     ...item.runes,
     ...item.implicits,
     ...item.enchants,
@@ -160,8 +224,9 @@ export async function renderItem(item) {
     // TODO: handle elemental damage
     { name: 'Critical Hit Chance', value: item.criticalHitChance ? item.criticalHitChance.toFixed(2) + '%' : undefined },
     { name: 'Attacks Per Second', alt: 'Attack Speed', value: item.attacksPerSecond },
-    // TODO: handle reload time
-    // TODO: handle jewel radius and limit
+    { name: 'Reload Time', alt: 'Attack Speed', value: item.reloadTime },
+    { name: 'Limited To', value: item.limitedTo },
+    { name: 'Radius', value: item.radius },
     { name: 'Charm Slots', value: item.charmSlots },
   ]) {
     if (line.value) {
@@ -285,7 +350,7 @@ export async function renderItem(item) {
   // draw affixes
   ctx.fillStyle = color.affix
 
-  for (const line of item.affixes) {
+  for (const line of limitText(item.affixes)) {
     ctx.fillText(line, canvas.width/2, currentY)
     currentY += lineHeight
   }
