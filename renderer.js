@@ -76,7 +76,6 @@ export async function renderItem(item) {
     headerWidth = (headerWidth/1.5)
   }
 
-
   const canvas = createCanvas(1200, 1200)
   const ctx = canvas.getContext('2d')
 
@@ -87,7 +86,7 @@ export async function renderItem(item) {
 
   ctx.font = `${fontHeight}px FontinSmallCaps`
 
-  const flavorSplit = item.flavorText?.split('\n') ?? []
+  const flavorSplit = item.flavorText?.lines ?? []
 
   const measureLines = [
     ...item.affixes,
@@ -310,7 +309,7 @@ export async function renderItem(item) {
     currentY = currentY + separatorMarginBottom
 
     ctx.fillStyle = color.unique
-    for (const line of item.flavorText.split('\n')) {
+    for (const line of item.flavorText.lines) {
       const skewAngle = -0.3
       ctx.save()
       ctx.transform(1, 0, skewAngle, 1, 0, 0)
