@@ -1,5 +1,5 @@
 import { registerFont, createCanvas, loadImage } from 'canvas'
-import * as fs from 'fs';
+import * as fs from 'fs'
 
 const headerHeight = 55
 const headerWidth = 47
@@ -53,17 +53,17 @@ function isBaseValueIncreased(item, name) {
 }
 
 function resizeCanvasWithoutClearing(canvas, newWidth, newHeight) {
-  const context = canvas.getContext('2d');
+  const context = canvas.getContext('2d')
 
   // Save the current canvas content as an image
-  const savedContent = context.getImageData(0, 0, canvas.width, canvas.height);
+  const savedContent = context.getImageData(0, 0, canvas.width, canvas.height)
 
   // Resize the canvas
-  canvas.width = newWidth;
-  canvas.height = newHeight;
+  canvas.width = newWidth
+  canvas.height = newHeight
 
   // Restore the saved content
-  context.putImageData(savedContent, 0, 0);
+  context.putImageData(savedContent, 0, 0)
 }
 
 export async function renderItem(item) {
@@ -108,11 +108,11 @@ export async function renderItem(item) {
     }
   }
 
-  canvas.width = linesMaxWidth + horizontalMargin
+  canvas.width = linesMaxWidth + (headerWidth*2)
 
   // draw background
-  // ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
-  ctx.fillStyle = '#000000';
+  // ctx.fillStyle = 'rgba(0, 0, 0, 0.8)'
+  ctx.fillStyle = '#000000'
   ctx.fillRect(0, 0, canvas.width, canvas.height)
 
   // prepare font
@@ -131,8 +131,8 @@ export async function renderItem(item) {
     const catalystQuality = item.qualityType ? ` (${item.qualityType})` : ''
     const mainText = `Quality${catalystQuality}: `
     const qualityText = `+${item.quality}%`
-    const mainTextWidth = ctx.measureText(mainText).width;
-    const qualityTextWidth = ctx.measureText(qualityText).width;
+    const mainTextWidth = ctx.measureText(mainText).width
+    const qualityTextWidth = ctx.measureText(qualityText).width
 
     ctx.fillText(mainText, (canvas.width/2)-(qualityTextWidth/2), state.y)
     ctx.fillStyle = color.affix
@@ -155,6 +155,7 @@ export async function renderItem(item) {
     { name: 'Critical Hit Chance', value: item.criticalHitChance ? item.criticalHitChance.toFixed(2) + '%' : undefined },
     { name: 'Attacks Per Second', alt: 'Attack Speed', value: item.attacksPerSecond },
     // TODO: handle reload time
+    // TODO: handle jewel radius and limit
     { name: 'Charm Slots', value: item.charmSlots },
   ]) {
     if (line.value) {
@@ -301,10 +302,10 @@ export async function renderItem(item) {
 
     ctx.fillStyle = color.unique
     for (const line of item.flavorText.split('\n')) {
-      const skewAngle = -0.3;
+      const skewAngle = -0.3
       ctx.save()
-      ctx.transform(1, 0, skewAngle, 1, 0, 0);
-      const adjustedX = ((canvas.width/2) - skewAngle * (state.y - lineHeight / 2)) + 5;
+      ctx.transform(1, 0, skewAngle, 1, 0, 0)
+      const adjustedX = ((canvas.width/2) - skewAngle * (state.y - lineHeight / 2)) + 5
       ctx.fillText(line, adjustedX, state.y)
       state.y += lineHeight
       ctx.restore()
@@ -330,9 +331,15 @@ export async function renderItem(item) {
   const nameColor = item.itemRarity === 'Unique' ? color.uniqueName : color[item.itemRarity.toLowerCase()]
   ctx.fillStyle = nameColor
   ctx.font = `${nameFontHeight}px FontinSmallCaps`
-  ctx.fillText(item.itemName.lines[0], canvas.width/2, nameOffset)
-  ctx.fillText(item.itemName.lines[1], canvas.width/2, nameFontHeight-nameOffset)
 
+  if (item.itemName.lines.length === 1) {
+    ctx.fillText(item.itemName.lines[0], canvas.width/2, (nameFontHeight/2))
+  }
+
+  if (item.itemName.lines.length === 2) {
+    ctx.fillText(item.itemName.lines[0], canvas.width/2, nameOffset)
+    ctx.fillText(item.itemName.lines[1], canvas.width/2, nameFontHeight-nameOffset)
+  }
 
   resizeCanvasWithoutClearing(canvas, canvas.width, state.y + headerMargin)
 

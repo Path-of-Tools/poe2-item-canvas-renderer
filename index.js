@@ -221,7 +221,19 @@ The final element the tale-women
 mastered was Time itself.
 `
 
-for (const item of [ wand, body, belt, helmet, stave1, body2, shield, body3 ]) {
+const jewel = `
+Item Class: Jewels
+Rarity: Magic
+Sapphire of Success
+--------
+Item Level: 80
+--------
+Recover 2% of Life on Kill
+--------
+Place into an allocated Jewel Socket on the Passive Skill Tree. Right click to remove from the Socket.
+`
+
+for (const item of [ wand, body, belt, helmet, stave1, body2, shield, body3, jewel ]) {
   const i = new PoE2ItemParser(item)
 
   console.log(i.getItem())
