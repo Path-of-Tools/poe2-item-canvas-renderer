@@ -86,7 +86,13 @@ function limitText(array) {
 }
 
 function isBaseValueIncreased(item, name) {
-  if (name !== 'Reduced Attribute Requirements' && name !== 'Block Chance' && item.quality && item.quality > 0) {
+  const notScalingWithQuality = [
+    'Reduced Attribute Requirements',
+    'Block Chance',
+    'Charges'
+  ]
+
+  if (!notScalingWithQuality.includes(name) && item.quality && item.quality > 0) {
     return true
   }
 
@@ -243,6 +249,90 @@ export async function renderItem(item) {
 
       currentY += lineHeight
     }
+  }
+
+  // flask recovery
+  if (item.flaskRecovery) {
+    // Recovers 372 Mana over 9,70 Seconds
+    let value1 = item.flaskRecovery.mana
+    let value2 = item.flaskRecovery.over
+    let tMiddle = ` Mana over `
+
+    if (item.flaskRecovery.life) {
+      value1 = item.flaskRecovery.life
+      tMiddle = ` Life over `
+    }
+    if (item.flaskRecovery.energyShield) {
+      value1 = item.flaskRecovery.energyShield
+      tMiddle = ` Energy Shield over `
+    }
+
+    const tLeft = `Recovers `
+    const tRight = ` Seconds`
+    const tLeftWidth = ctx.measureText(tLeft).width
+    const value1Width = ctx.measureText(value1).width
+    const tMiddleWidth = ctx.measureText(tMiddle).width
+    const value2Width = ctx.measureText(value2).width
+    const tRightWidth = ctx.measureText(tRight).width
+
+    // Recovers
+    ctx.fillStyle = color.grey
+    ctx.fillText(tLeft, (canvas.width/2)-(value1Width/2)-(tMiddleWidth/2)-(value2Width/2)-(tRightWidth/2), currentY)
+
+    // value1
+    ctx.fillStyle = isBaseValueIncreased(item, 'Recovery') ? color.affix : color.white
+    ctx.fillText(value1, (canvas.width/2)+(tLeftWidth/2)-(tMiddleWidth/2)-(value2Width/2)-(tRightWidth/2), currentY)
+
+    // mana/life/es over
+    ctx.fillStyle = color.grey
+    ctx.fillText(tMiddle, (canvas.width/2)+(tLeftWidth/2)+(value1Width/2)-(value2Width/2)-(tRightWidth/2), currentY)
+
+    // value2
+    ctx.fillStyle = isBaseValueIncreased(item, 'Duration') ? color.affix : color.white
+    ctx.fillText(value2, (canvas.width/2)+(tLeftWidth/2)+(value1Width/2)+(tMiddleWidth/2)-(tRightWidth/2), currentY)
+
+    // Seconds
+    ctx.fillStyle = color.grey
+    ctx.fillText(tRight, (canvas.width/2)+(tLeftWidth/2)+(value1Width/2)+(tMiddleWidth/2)+(value2Width/2), currentY)
+
+    currentY += lineHeight
+  }
+
+  if (item.charges) {
+    // Consumes 10 of 75 Charges on use
+    const tLeft = `Consumes `
+    const value1 = item.charges.consumes
+    let tMiddle = ` of `
+    const value2 = item.charges.max
+    const tRight = ` Charges on use`
+    const tLeftWidth = ctx.measureText(tLeft).width
+    const value1Width = ctx.measureText(value1).width
+    const tMiddleWidth = ctx.measureText(tMiddle).width
+    const value2Width = ctx.measureText(value2).width
+    const tRightWidth = ctx.measureText(tRight).width
+
+    // Consumes
+    ctx.fillStyle = color.grey
+    ctx.fillText(tLeft, (canvas.width/2)-(value1Width/2)-(tMiddleWidth/2)-(value2Width/2)-(tRightWidth/2), currentY)
+
+    // value1
+    ctx.fillStyle = isBaseValueIncreased(item, 'Charges') ? color.affix : color.white
+    ctx.fillText(value1, (canvas.width/2)+(tLeftWidth/2)-(tMiddleWidth/2)-(value2Width/2)-(tRightWidth/2), currentY)
+
+    // of
+    ctx.fillStyle = color.grey
+    ctx.fillText(tMiddle, (canvas.width/2)+(tLeftWidth/2)+(value1Width/2)-(value2Width/2)-(tRightWidth/2), currentY)
+
+    // value2
+    // not scaleable afaik
+    ctx.fillStyle = color.white
+    ctx.fillText(value2, (canvas.width/2)+(tLeftWidth/2)+(value1Width/2)+(tMiddleWidth/2)-(tRightWidth/2), currentY)
+
+    // Charges on use
+    ctx.fillStyle = color.grey
+    ctx.fillText(tRight, (canvas.width/2)+(tLeftWidth/2)+(value1Width/2)+(tMiddleWidth/2)+(value2Width/2), currentY)
+
+    currentY += lineHeight
   }
 
   // separator
