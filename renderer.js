@@ -199,7 +199,10 @@ export async function renderItem(item) {
   // draw item class
   ctx.fillStyle = color.grey
 
-  ctx.fillText(item.itemClass, canvas.width/2, currentY)
+  const singularClass = item.itemClass
+    .replace(/staves$/, 'staff')
+    .replace(/s$/, '')
+  ctx.fillText(singularClass, canvas.width/2, currentY)
   currentY += lineHeight
 
   // draw quality
