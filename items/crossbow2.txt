@@ -1,0 +1,24 @@
+Item Class: Crossbows
+Rarity: Rare
+Gale Core
+Sturdy Crossbow
+--------
+Physical Damage: 9-22
+Elemental Damage: 2-3 (augmented), 1-9 (augmented)
+Critical Hit Chance: 5.00%
+Attacks per Second: 1.64 (augmented)
+Reload Time: 0.75 (augmented)
+--------
+Requirements:
+Level: 10
+Str: 15
+Dex: 15
+--------
+Item Level: 12
+--------
+Adds 2 to 3 Cold Damage
+Adds 1 to 9 Lightning Damage
++52 to Accuracy Rating
++14% to Critical Damage Bonus
+6% increased Attack Speed
+Gain 9 Life per Enemy Killed

@@ -1,0 +1,24 @@
+Item Class: Gloves
+Rarity: Rare
+Rage Grasp
+Expert Jewelled Gloves
+--------
+Quality: +20% (augmented)
+Energy Shield: 55 (augmented)
+--------
+Requirements:
+Level: 70
+Int: 113
+--------
+Sockets: S 
+--------
+Item Level: 81
+--------
+2% increased maximum Mana (rune)
+--------
++449 to Accuracy Rating
++149 to maximum Life
++170 to maximum Mana
++27 to Dexterity
++29 to Intelligence
++26% to Chaos Resistance

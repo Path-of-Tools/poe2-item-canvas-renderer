@@ -1,0 +1,16 @@
+Item Class: Wands
+Rarity: Rare
+Storm Needle
+Siphoning Wand
+--------
+Requirements:
+Level: 78
+--------
+Item Level: 81
+--------
+104% increased [Spell] Damage
+101% increased [Lightning] Damage
++175 to maximum Mana
++5 to Level of all [Lightning|Lightning] [Spell|Spell] Skills
+34% increased Cast Speed
++33 to [Intelligence|Intelligence]
