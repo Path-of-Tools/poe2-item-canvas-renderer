@@ -220,8 +220,43 @@ export async function renderItem(item) {
     currentY += lineHeight
   }
 
-  // draw base stats
-  ctx.fillStyle = color.grey
+  function drawElementalDamage(name) {
+    if (item.elementalDamage?.length) {
+      ctx.fillStyle = color.grey
+
+      const base = `${name}: `
+      // const _a = `${item.elementalDamage[0]?.min}-${item.elementalDamage[0]?.max}`
+      // const _b = `${item.elementalDamage[1]?.min}-${item.elementalDamage[1]?.max}`
+      // const _c = `${item.elementalDamage[2]?.min}-${item.elementalDamage[2]?.max}`
+
+      const a = `${item.elementalDamage[0]?.min}-${item.elementalDamage[0]?.max}` + (item.elementalDamage.length > 1 ? ', ' : '')
+      const b = `${item.elementalDamage[1]?.min}-${item.elementalDamage[1]?.max}` + (item.elementalDamage.length > 2 ? ', ' : '')
+      const c = `${item.elementalDamage[2]?.min}-${item.elementalDamage[2]?.max}`
+      const baseWidth = ctx.measureText(base).width
+      const aWidth = (item.elementalDamage.length > 0) ? ctx.measureText(a).width : 0
+      const bWidth = (item.elementalDamage.length > 1) ? ctx.measureText(b).width : 0
+      const cWidth = (item.elementalDamage.length > 2) ? ctx.measureText(c).width : 0
+
+      ctx.fillText(base, (canvas.width/2)-(aWidth/2)-(bWidth/2)-(cWidth/2), currentY)
+
+      if (item.elementalDamage.length > 0) {
+        ctx.fillStyle = color.affix
+        ctx.fillText(a, (canvas.width/2)+(baseWidth/2)-(bWidth/2)-(cWidth/2), currentY)
+      }
+
+      if (item.elementalDamage.length > 1) {
+        ctx.fillStyle = color.affix
+        ctx.fillText(b, (canvas.width/2)+(baseWidth/2)+(aWidth/2)-(cWidth/2), currentY)
+      }
+
+      if (item.elementalDamage.length > 2) {
+        ctx.fillStyle = color.affix
+        ctx.fillText(c, (canvas.width/2)+(baseWidth/2)+(aWidth/2)+(bWidth/2), currentY)
+      }
+
+      currentY += lineHeight
+    }
+  }
 
   for (const line of [
     { name: 'Block Chance', value: item.blockChance ? item.blockChance + '%' : undefined },
@@ -230,7 +265,10 @@ export async function renderItem(item) {
     { name: 'Energy Shield', value: item.stats.energyShield },
     { name: 'Spirit', value: item.stats.spirit },
     { name: 'Physical Damage', value: item.physicalDamage },
-    // TODO: handle elemental damage
+    { name: 'Lightning Damage', value: item.fireDamage },
+    { name: 'Cold Damage', value: item.coldDamage },
+    { name: 'Lightning Damage', value: item.lightningDamage },
+    { name: 'Elemental Damage' },
     { name: 'Critical Hit Chance', value: item.criticalHitChance ? item.criticalHitChance.toFixed(2) + '%' : undefined },
     { name: 'Attacks Per Second', alt: 'Attack Speed', value: item.attacksPerSecond },
     { name: 'Reload Time', alt: 'Attack Speed', value: item.reloadTime },
@@ -238,6 +276,14 @@ export async function renderItem(item) {
     { name: 'Radius', value: item.radius },
     { name: 'Charm Slots', value: item.charmSlots },
   ]) {
+    if (line.name === 'Elemental Damage') {
+      drawElementalDamage(line.name)
+      continue;
+    }
+
+    // draw base stats
+    ctx.fillStyle = color.grey
+
     if (line.value) {
       const name = `${line.name}: `
       const value = Array.isArray(line.value) ? `${line.value[0].min}-${line.value[0].max}` : line.value
