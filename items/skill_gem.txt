@@ -1,0 +1,19 @@
+Item Class: Skill Gems
+Rarity: Gem
+Spark
+--------
+Spell, Projectile, Lightning, Duration
+Level: 27 (augmented)
+20 Levels from Gem (Max)
++7 Levels from Global Modifiers (augmented)
+Quality: +20% (augmented)
+--------
+Requirements:
+Level: 90
+Int: 205
+--------
+Sockets: G G G G G 
+--------
+Launches a spray of sparking Projectiles that travel erratically along the ground until they hit an enemy or expire.
+--------
+Skills can be managed in the Skills Panel.

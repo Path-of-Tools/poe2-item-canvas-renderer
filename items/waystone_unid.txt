@@ -1,0 +1,14 @@
+Item Class: Waystones
+Rarity: Magic
+Waystone (Tier 15)
+--------
+Waystone Tier: 15
+--------
+Item Level: 79
+--------
+Players in Area are 68% Delirious (enchant)
+30% increased Precursor Tablets found in Area (enchant)
+--------
+Unidentified
+--------
+Can be used in a Map Device, allowing you to enter a Map. Waystones can only be used once.

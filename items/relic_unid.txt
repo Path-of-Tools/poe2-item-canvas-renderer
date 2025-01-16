@@ -1,0 +1,9 @@
+Item Class: Relics
+Rarity: Magic
+Tapestry Relic
+--------
+Item Level: 81
+--------
+Unidentified
+--------
+Place this item on the Relic Altar at the start of the Trial of the Sekhemas
