@@ -1,5 +1,9 @@
 import { registerFont, createCanvas, loadImage } from 'canvas'
-import * as fs from 'fs'
+import { fileURLToPath } from 'url'
+import path from 'path'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const headerMargin = 10
 const horizontalMargin = 40
@@ -131,11 +135,11 @@ function resizeCanvasWithoutClearing(canvas, newWidth, newHeight) {
 }
 
 export async function renderItem(item) {
-  registerFont('assets/fontin-smallcaps-webfont.ttf', { family: 'FontinSmallCaps' })
-  const separator = await loadImage(`assets/separator-${item.itemRarity}.png`)
-  const headerMiddle = await loadImage(`assets/header-${item.itemRarity}-middle.png`)
-  const headerLeft = await loadImage(`assets/header-${item.itemRarity}-left.png`)
-  const headerRight = await loadImage(`assets/header-${item.itemRarity}-right.png`)
+  registerFont(__dirname + '/assets/fontin-smallcaps-webfont.ttf', { family: 'FontinSmallCaps' })
+  const separator = await loadImage(__dirname + `/assets/separator-${item.itemRarity}.png`)
+  const headerMiddle = await loadImage(__dirname + `/assets/header-${item.itemRarity}-middle.png`)
+  const headerLeft = await loadImage(__dirname + `/assets/header-${item.itemRarity}-left.png`)
+  const headerRight = await loadImage(__dirname + `/assets/header-${item.itemRarity}-right.png`)
 
   let headerHeight = headerLeft.height
   let headerWidth = headerLeft.width
