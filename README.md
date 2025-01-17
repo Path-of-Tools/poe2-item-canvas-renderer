@@ -3,7 +3,6 @@
 * parse CTRL+C item with `Path-of-Tools/poe-item-parser`
 * render to a canvas with `Automattic/node-canvas`
 * node-canvas is compatible with the whatwg canvas spec, so this should work for web canvas as well with minimal changes
-* test with `node test.js`
 
 ## Usage example
 
@@ -54,7 +53,7 @@ out.on('finish', () => console.log('example.png created'))
 
 ![example item](./example.png)
 
-## Notes
+## Testing
 
 `node test.js` parses all items in the `items/` folder and writes out an image and a json file (parser output) for each.
 
