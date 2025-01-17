@@ -200,7 +200,7 @@ export async function renderItem(item) {
   ctx.textAlign = 'center'
   ctx.textBaseline = 'top'
 
-  // draw item class
+  // item class
   ctx.fillStyle = color.grey
 
   const singularClass = item.itemClass
@@ -209,7 +209,28 @@ export async function renderItem(item) {
   ctx.fillText(singularClass, canvas.width/2, currentY)
   currentY += lineHeight
 
-  // draw quality
+  // stack size
+  if (item.stackSize) {
+    let maxSize = ''
+
+    // don't show stack size if it's bigger than max
+    if (item.stackSize.max && item.stackSize.max >= item.stackSize.current) {
+      maxSize = `/${item.stackSize.max}`
+    }
+
+    const mainText = `Stack Size: `
+    const stackText = item.stackSize.current + maxSize
+    const mainTextWidth = ctx.measureText(mainText).width
+    const qualityTextWidth = ctx.measureText(stackText).width
+
+    ctx.fillText(mainText, (canvas.width/2)-(qualityTextWidth/2), currentY)
+    ctx.fillStyle = color.white
+    ctx.fillText(stackText, (canvas.width/2)+(mainTextWidth/2), currentY)
+
+    currentY += lineHeight
+  }
+
+  // quality
   if (item.quality && item.quality > 0) {
     const catalystQuality = item.qualityType ? ` (${item.qualityType})` : ''
     const mainText = `Quality${catalystQuality}: `
@@ -258,7 +279,7 @@ export async function renderItem(item) {
     }
   }
 
-  // draw base stats
+  // base stats
   for (const line of [
     { name: 'Block Chance', value: item.blockChance ? item.blockChance + '%' : undefined },
     { name: 'Armour', value: item.stats.armour },
