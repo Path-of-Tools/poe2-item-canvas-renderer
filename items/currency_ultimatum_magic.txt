@@ -1,0 +1,19 @@
+Item Class: Inscribed Ultimatum
+Rarity: Magic
+Vaal Inscribed Ultimatum of Suffocation
+--------
+Area Level: 80
+Number of Trials: 10
+--------
+Item Level: 82
+--------
+Sacrifice up to 10 Vaal Orbs to receive double on Trial completion
+Players have 60% less Recovery Rate of Life, Mana and Energy Shield
+--------
+Mortals spend their lives wondering which
+fate shall be theirs. Chaos takes amusement
+in knowing the answer: all of them.
+--------
+Take this item to The Temple of Chaos to participate in a Trial of Chaos.
+--------
+Corrupted

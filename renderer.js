@@ -412,7 +412,6 @@ export async function renderItem(item) {
 
   // item level
   if (item.itemLevel) {
-
     ctx.fillStyle = color.white
     ctx.fillText(`Item Level: ${item.itemLevel}`, canvas.width/2, currentY)
     currentY += lineHeight
@@ -467,6 +466,34 @@ export async function renderItem(item) {
     currentY = currentY + separatorMarginTop
     ctx.drawImage(separator, (canvas.width/2)-(separatorWidth/2), currentY)
     currentY = currentY + separatorMarginBottom
+  }
+
+  if (item.areaLevel) {
+    const mainText = 'Area Level: '
+    const areaLevelText = item.areaLevel
+    const mainTextWidth = ctx.measureText(mainText).width
+    const areaLevelTextWidth = ctx.measureText(areaLevelText).width
+
+    ctx.fillStyle = color.grey
+    ctx.fillText(mainText, (canvas.width/2)-(areaLevelTextWidth/2), currentY)
+    ctx.fillStyle = color.white
+    ctx.fillText(areaLevelText, (canvas.width/2)+(mainTextWidth/2), currentY)
+
+    currentY += lineHeight
+  }
+
+  if (item.numberOfTrials) {
+    const mainText = 'Number of Trials: '
+    const areaLevelText = item.numberOfTrials
+    const mainTextWidth = ctx.measureText(mainText).width
+    const areaLevelTextWidth = ctx.measureText(areaLevelText).width
+
+    ctx.fillStyle = color.grey
+    ctx.fillText(mainText, (canvas.width/2)-(areaLevelTextWidth/2), currentY)
+    ctx.fillStyle = color.white
+    ctx.fillText(areaLevelText, (canvas.width/2)+(mainTextWidth/2), currentY)
+
+    currentY += lineHeight
   }
 
   // enchants

@@ -1,0 +1,22 @@
+Item Class: Trial Coins
+Rarity: Normal
+Test of Will Barya
+--------
+Area Level: 53
+Sacred Water: 618
+Minor Boons: Hare Foot
+Minor Afflictions: Blunt Sword
+--------
+Item Level: 52
+--------
+[Rarity|Rare] Monsters deal 5% reduced Damage
++15% to [HonourResistance|Honour Resistance]
+20% increased [Honour] restored
+Restore 25 [Honour] on venerating a Maraketh Shrine
+--------
+The world will seek to crush you and yours.
+A Sekhema must have relentless will.
+--------
+Right click this item to view details of the Trials in progress. Take this item to the Relic Altar in the Trial of the Sekhemas to enter.
+--------
+Unmodifiable
