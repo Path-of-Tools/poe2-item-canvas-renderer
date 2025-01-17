@@ -23,12 +23,14 @@ const color = {
   affix: '#8888ff',
   corrupted: '#d20000',
   currency: '#aa9e82',
-  normal: '#ac8c8c8',
+  normal: '#c8c8c8',
   magic: '#8888ff',
   rare: '#ffff77',
   unique: '#af6025',
   uniqueName: '#ee681d',
   quest: '#4ae63a',
+  boon: '#b5a890',
+  affliction: '#a06dca',
 }
 
 function limitFlavorText(flavorText) {
@@ -162,12 +164,27 @@ export async function renderItem(item) {
   item.flavorText = limitFlavorText(item.flavorText)
   const flavorSplit = item.flavorText?.lines ?? []
 
+  let sanctumStats = []
+  if (item.sanctum?.minorBoons?.length) {
+    sanctumStats.push('Minor Boons: ' + item.sanctum.minorBoons.join(', '))
+  }
+  if (item.sanctum?.majorBoons?.length) {
+    sanctumStats.push('Major Boons: ' + item.sanctum.majorBoons.join(', '))
+  }
+  if (item.sanctum?.minorAfflictions?.length) {
+    sanctumStats.push('Minor Afflictions: ' + item.sanctum.minorAfflictions.join(', '))
+  }
+  if (item.sanctum?.majorAfflictions?.length) {
+    sanctumStats.push('Major Afflictions: ' + item.sanctum.majorAfflictions.join(', '))
+  }
+
   const measureLines = [
     ...limitText(item.affixes),
     ...item.runes,
     ...item.implicits,
     ...item.enchants,
     ...flavorSplit,
+    ...sanctumStats,
   ]
 
   for (const line of measureLines) {
@@ -467,6 +484,7 @@ export async function renderItem(item) {
   ctx.drawImage(separator, (canvas.width/2)-(separatorWidth/2), currentY)
   currentY = currentY + separatorMarginBottom
 
+  // area level
   if (item.areaLevel) {
     const mainText = 'Area Level: '
     const areaLevelText = item.areaLevel
@@ -481,22 +499,84 @@ export async function renderItem(item) {
     currentY += lineHeight
   }
 
+  // number of trials
   if (item.numberOfTrials) {
     const mainText = 'Number of Trials: '
-    const areaLevelText = item.numberOfTrials
+    const trialCountText = item.numberOfTrials
     const mainTextWidth = ctx.measureText(mainText).width
-    const areaLevelTextWidth = ctx.measureText(areaLevelText).width
+    const trialCountTextWidth = ctx.measureText(trialCountText).width
 
     ctx.fillStyle = color.grey
-    ctx.fillText(mainText, (canvas.width/2)-(areaLevelTextWidth/2), currentY)
+    ctx.fillText(mainText, (canvas.width/2)-(trialCountTextWidth/2), currentY)
     ctx.fillStyle = color.white
-    ctx.fillText(areaLevelText, (canvas.width/2)+(mainTextWidth/2), currentY)
+    ctx.fillText(trialCountText, (canvas.width/2)+(mainTextWidth/2), currentY)
 
     currentY += lineHeight
   }
 
-  // special case: magic ultimatum trials
-  if ((item.areaLevel || item.numberOfTrials) && item.itemRarity === 'Magic') {
+  // Minor Boons
+  if (item.sanctum?.minorBoons?.length) {
+    const mainText = 'Minor Boons: '
+    const contentText = item.sanctum.minorBoons.join(', ')
+    const mainTextWidth = ctx.measureText(mainText).width
+    const contentTextWidth = ctx.measureText(contentText).width
+
+    ctx.fillStyle = color.grey
+    ctx.fillText(mainText, (canvas.width/2)-(contentTextWidth/2), currentY)
+    ctx.fillStyle = color.boon
+    ctx.fillText(contentText, (canvas.width/2)+(mainTextWidth/2), currentY)
+
+    currentY += lineHeight
+  }
+
+  // Major Boons
+  if (item.sanctum?.majorBoons?.length) {
+    const mainText = 'Major Boons: '
+    const contentText = item.sanctum.majorBoons.join(', ')
+    const mainTextWidth = ctx.measureText(mainText).width
+    const contentTextWidth = ctx.measureText(contentText).width
+
+    ctx.fillStyle = color.grey
+    ctx.fillText(mainText, (canvas.width/2)-(contentTextWidth/2), currentY)
+    ctx.fillStyle = color.boon
+    ctx.fillText(contentText, (canvas.width/2)+(mainTextWidth/2), currentY)
+
+    currentY += lineHeight
+  }
+
+  // Minor Afflictions
+  if (item.sanctum?.minorAfflictions?.length) {
+    const mainText = 'Minor Afflictions: '
+    const contentText = item.sanctum.minorAfflictions.join(', ')
+    const mainTextWidth = ctx.measureText(mainText).width
+    const contentTextWidth = ctx.measureText(contentText).width
+
+    ctx.fillStyle = color.grey
+    ctx.fillText(mainText, (canvas.width/2)-(contentTextWidth/2), currentY)
+    ctx.fillStyle = color.affliction
+    ctx.fillText(contentText, (canvas.width/2)+(mainTextWidth/2), currentY)
+
+    currentY += lineHeight
+  }
+
+  // Major Afflictions
+  if (item.sanctum?.majorAfflictions?.length) {
+    const mainText = 'Major Afflictions: '
+    const contentText = item.sanctum.majorBoons.join(', ')
+    const mainTextWidth = ctx.measureText(mainText).width
+    const contentTextWidth = ctx.measureText(contentText).width
+
+    ctx.fillStyle = color.grey
+    ctx.fillText(mainText, (canvas.width/2)-(contentTextWidth/2), currentY)
+    ctx.fillStyle = color.affliction
+    ctx.fillText(contentText, (canvas.width/2)+(mainTextWidth/2), currentY)
+
+    currentY += lineHeight
+  }
+
+  // special case: magic ultimatum trials and normal started sanctum trials
+  if ((item.areaLevel || item.numberOfTrials || Object.keys(item.sanctum).length) &&
+    ['Normal', 'Magic'].includes(item.itemRarity)) {
     // separator
     currentY = currentY + separatorMarginTop
     ctx.drawImage(separator, (canvas.width/2)-(separatorWidth/2), currentY)
@@ -565,12 +645,36 @@ export async function renderItem(item) {
     currentY += lineHeight
   }
 
-    // unidentified
-    if (!item.identified) {
-      ctx.fillStyle = color.corrupted
-      ctx.fillText('Unidentified', canvas.width/2, currentY)
-      currentY += lineHeight
-    }
+  // mirrored
+  if (item.mirrored) {
+    // separator
+    currentY = currentY + separatorMarginTop
+    ctx.drawImage(separator, (canvas.width/2)-(separatorWidth/2), currentY)
+    currentY = currentY + separatorMarginBottom
+
+    ctx.fillStyle = color.magic
+    ctx.fillText('Mirrored', canvas.width/2, currentY)
+    currentY += lineHeight
+  }
+
+  // unmodifiable
+  if (item.unmodifiable) {
+    // separator
+    currentY = currentY + separatorMarginTop
+    ctx.drawImage(separator, (canvas.width/2)-(separatorWidth/2), currentY)
+    currentY = currentY + separatorMarginBottom
+
+    ctx.fillStyle = color.magic
+    ctx.fillText('Unmodifiable', canvas.width/2, currentY)
+    currentY += lineHeight
+  }
+
+  // unidentified
+  if (!item.identified) {
+    ctx.fillStyle = color.corrupted
+    ctx.fillText('Unidentified', canvas.width/2, currentY)
+    currentY += lineHeight
+  }
 
   // flavor text
   if (item.flavorText) {

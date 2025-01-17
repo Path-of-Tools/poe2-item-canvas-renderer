@@ -1,0 +1,21 @@
+Item Class: Quivers
+Rarity: Rare
+Havoc Spike
+Primed Quiver
+--------
+Requirements:
+Level: 60
+--------
+Item Level: 80
+--------
+7% increased Attack Speed (implicit)
+--------
+Adds 12 to 25 Fire damage to Attacks
+Adds 1 to 63 Lightning damage to Attacks
++1 to Level of all Projectile Skills
+Gain 9 Life per Enemy Killed
+Gain 19 Mana per Enemy Killed
+--------
+Can only be equipped if you are wielding a Bow.
+--------
+Corrupted

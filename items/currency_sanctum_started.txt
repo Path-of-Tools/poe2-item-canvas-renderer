@@ -3,16 +3,18 @@ Rarity: Normal
 Test of Will Barya
 --------
 Area Level: 53
-Sacred Water: 618
-Minor Boons: Hare Foot
-Minor Afflictions: Blunt Sword
+Sacred Water: 463
+Minor Boons: Fountain of Youth
+Major Boons: Earned Honour
+Minor Afflictions: Low Rivers, Gate Toll, Trade Tariff, Golden Smoke
+Major Afflictions: Death Toll
 --------
 Item Level: 52
 --------
-[Rarity|Rare] Monsters deal 5% reduced Damage
-+15% to [HonourResistance|Honour Resistance]
-20% increased [Honour] restored
-Restore 25 [Honour] on venerating a Maraketh Shrine
+Hits against you have 15% reduced Critical Damage Bonus
+14% increased quantity of Keys dropped by Monsters
++18% to Honour Resistance
+43% increased maximum Honour
 --------
 The world will seek to crush you and yours.
 A Sekhema must have relentless will.
