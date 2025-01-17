@@ -28,6 +28,7 @@ const color = {
   rare: '#ffff77',
   unique: '#af6025',
   uniqueName: '#ee681d',
+  gem: '#1ba29b',
   quest: '#4ae63a',
   boon: '#b5a890',
   affliction: '#a06dca',
@@ -146,7 +147,9 @@ export async function renderItem(item) {
   let headerHeight = headerLeft.height
   let headerWidth = headerLeft.width
 
-  if (![ 'Rare', 'Unique' ].includes(item.itemRarity)) {
+  // unidentified items have no name, and thus a small header
+  // items that are rare or unique have a double sized header
+  if (![ 'Rare', 'Unique' ].includes(item.itemRarity) || !item.identified) {
     headerHeight = (headerHeight/1.5)
     headerWidth = (headerWidth/1.5)
   }
@@ -435,6 +438,36 @@ export async function renderItem(item) {
     currentY += lineHeight
   }
 
+  // Waystone Tier
+  if (item.waystoneTier) {
+    const mainText = 'Waystone Tier: '
+    const valueText = item.waystoneTier
+    const mainTextWidth = ctx.measureText(mainText).width
+    const valueTextWidth = ctx.measureText(valueText).width
+
+    ctx.fillStyle = color.grey
+    ctx.fillText(mainText, (canvas.width/2)-(valueTextWidth/2), currentY)
+    ctx.fillStyle = color.white
+    ctx.fillText(valueText, (canvas.width/2)+(mainTextWidth/2), currentY)
+
+    currentY += lineHeight
+  }
+
+  // Waystone Drop Chance
+  if (item.waystoneDropChance) {
+    const mainText = 'Waystone Drop Chance: '
+    const valueText = `+${item.waystoneDropChance}%`
+    const mainTextWidth = ctx.measureText(mainText).width
+    const valueTextWidth = ctx.measureText(valueText).width
+
+    ctx.fillStyle = color.grey
+    ctx.fillText(mainText, (canvas.width/2)-(valueTextWidth/2), currentY)
+    ctx.fillStyle = color.affix
+    ctx.fillText(valueText, (canvas.width/2)+(mainTextWidth/2), currentY)
+
+    currentY += lineHeight
+  }
+
   // requirements
   if (item.requirements.level || item.requirements.intelligence || item.requirements.strength || item.requirements.dexterity) {
     ctx.fillStyle = color.grey
@@ -574,8 +607,10 @@ export async function renderItem(item) {
     currentY += lineHeight
   }
 
+  // if (item.itemClass === 'Waystones' && item.) {}
+
   // special case: magic ultimatum trials and normal started sanctum trials
-  if ((item.areaLevel || item.numberOfTrials || Object.keys(item.sanctum).length) &&
+  if ((item.areaLevel || item.numberOfTrials || item.sanctum?.minorBoons || item.sanctum?.majorBoons || item.sanctum?.minorAfflictions || item.sanctum?.majorAfflictions) &&
     ['Normal', 'Magic'].includes(item.itemRarity)) {
     // separator
     currentY = currentY + separatorMarginTop

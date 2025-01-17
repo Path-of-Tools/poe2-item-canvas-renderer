@@ -1,0 +1,21 @@
+Item Class: Expedition Logbooks
+Rarity: Normal
+Expedition Logbook
+--------
+Area Level: 80
+--------
+Item Level: 80
+--------
+Barren Atoll
+Druids of the Broken Circle
+Area contains 21% increased number of [Runic] Monster Markers (implicit)
+28% increased Explosive Placement Range (implicit)
+Area contains 26% increased number of Monster Markers (implicit)
+--------
+Frigid Bluffs
+Druids of the Broken Circle
+Area contains 10% increased number of [Runic] Monster Markers (implicit)
+40% increased Explosive Radius (implicit)
+Area contains 30% increased number of Remnants (implicit)
+--------
+Take this item to Dannig in your Hideout to open portals to an expedition.

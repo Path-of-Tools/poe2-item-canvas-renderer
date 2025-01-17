@@ -1,0 +1,16 @@
+Item Class: Waystones
+Rarity: Rare
+Putrid Order
+Waystone (Tier 15)
+--------
+Waystone Tier: 15
+Waystone Drop Chance: +195% (augmented)
+--------
+Item Level: 80
+--------
+116% increased Rarity of Items found in this Area
+26% increased number of Monster Packs
+Monsters Break Armour equal to 50% of Physical Damage dealt
+Players gain 50% reduced Flask Charges
+--------
+Can be used in a Map Device, allowing you to enter a Map. Waystones can only be used once.

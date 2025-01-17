@@ -1,0 +1,18 @@
+Item Class: Waystones
+Rarity: Magic
+Populated Waystone (Tier 15) of Overpowering
+--------
+Waystone Tier: 15
+Waystone Drop Chance: +100% (augmented)
+--------
+Item Level: 80
+--------
+20% increased Magic Monsters (enchant)
+Players in Area are 7% Delirious (enchant)
+--------
+25% increased number of Monster Packs
+Monsters have 200% increased Freeze Buildup
+Monsters have 200% increased Ignite Chance
+Monsters have 200% increased Shock Chance
+--------
+Can be used in a Map Device, allowing you to enter a Map. Waystones can only be used once.

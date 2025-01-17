@@ -1,0 +1,20 @@
+Item Class: Waystones
+Rarity: Rare
+Lost Course
+Waystone (Tier 15)
+--------
+Waystone Tier: 15
+Waystone Drop Chance: +95% (augmented)
+--------
+Item Level: 80
+--------
+8% increased Rarity of Items found in this Area (enchant)
+30% increased Stack size of Simulacrum Splinters found in Area (enchant)
+Players in Area are 55% Delirious (enchant)
+Unique Monsters have 1 additional Modifier (enchant)
+--------
+Area contains 15 additional packs of Beasts
+39% increased Magic Monsters
+Monsters deal 40% of Damage as Extra Fire
+--------
+Can be used in a Map Device, allowing you to enter a Map. Waystones can only be used once.
