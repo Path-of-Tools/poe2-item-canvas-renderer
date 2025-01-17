@@ -405,13 +405,14 @@ export async function renderItem(item) {
     currentY += lineHeight
   }
 
-  // separator
-  currentY = currentY + separatorMarginTop
-  ctx.drawImage(separator, (canvas.width/2)-(separatorWidth/2), currentY)
-  currentY = currentY + separatorMarginBottom
 
   // item level
   if (item.itemLevel) {
+    // separator
+    currentY = currentY + separatorMarginTop
+    ctx.drawImage(separator, (canvas.width/2)-(separatorWidth/2), currentY)
+    currentY = currentY + separatorMarginBottom
+
     ctx.fillStyle = color.white
     ctx.fillText(`Item Level: ${item.itemLevel}`, canvas.width/2, currentY)
     currentY += lineHeight
@@ -461,12 +462,10 @@ export async function renderItem(item) {
     currentY += lineHeight
   }
 
-  if (item.itemLevel || item.requirements.level || item.requirements.intelligence || item.requirements.strength || item.requirements.dexterity) {
-    // separator
-    currentY = currentY + separatorMarginTop
-    ctx.drawImage(separator, (canvas.width/2)-(separatorWidth/2), currentY)
-    currentY = currentY + separatorMarginBottom
-  }
+  // separator
+  currentY = currentY + separatorMarginTop
+  ctx.drawImage(separator, (canvas.width/2)-(separatorWidth/2), currentY)
+  currentY = currentY + separatorMarginBottom
 
   if (item.areaLevel) {
     const mainText = 'Area Level: '
@@ -494,6 +493,14 @@ export async function renderItem(item) {
     ctx.fillText(areaLevelText, (canvas.width/2)+(mainTextWidth/2), currentY)
 
     currentY += lineHeight
+  }
+
+  // special case: magic ultimatum trials
+  if ((item.areaLevel || item.numberOfTrials) && item.itemRarity === 'Magic') {
+    // separator
+    currentY = currentY + separatorMarginTop
+    ctx.drawImage(separator, (canvas.width/2)-(separatorWidth/2), currentY)
+    currentY = currentY + separatorMarginBottom
   }
 
   // enchants
