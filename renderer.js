@@ -229,10 +229,6 @@ export async function renderItem(item) {
       ctx.fillStyle = color.grey
 
       const base = `${name}: `
-      // const _a = `${item.elementalDamage[0]?.min}-${item.elementalDamage[0]?.max}`
-      // const _b = `${item.elementalDamage[1]?.min}-${item.elementalDamage[1]?.max}`
-      // const _c = `${item.elementalDamage[2]?.min}-${item.elementalDamage[2]?.max}`
-
       const a = `${item.elementalDamage[0]?.min}-${item.elementalDamage[0]?.max}` + (item.elementalDamage.length > 1 ? ', ' : '')
       const b = `${item.elementalDamage[1]?.min}-${item.elementalDamage[1]?.max}` + (item.elementalDamage.length > 2 ? ', ' : '')
       const c = `${item.elementalDamage[2]?.min}-${item.elementalDamage[2]?.max}`
@@ -262,6 +258,7 @@ export async function renderItem(item) {
     }
   }
 
+  // draw base stats
   for (const line of [
     { name: 'Block Chance', value: item.blockChance ? item.blockChance + '%' : undefined },
     { name: 'Armour', value: item.stats.armour },
@@ -285,7 +282,6 @@ export async function renderItem(item) {
       continue
     }
 
-    // draw base stats
     ctx.fillStyle = color.grey
 
     if (line.value) {
@@ -306,7 +302,7 @@ export async function renderItem(item) {
 
   // flask recovery
   if (item.flaskRecovery) {
-    // Recovers 372 Mana over 9,70 Seconds
+    // Example line: "Recovers 372 Mana over 9,70 Seconds"
     let value1 = item.flaskRecovery.mana
     let value2 = item.flaskRecovery.over
     let tMiddle = ` Mana over `
@@ -351,8 +347,9 @@ export async function renderItem(item) {
     currentY += lineHeight
   }
 
+  // flask charges
   if (item.charges) {
-    // Consumes 10 of 75 Charges on use
+    // Example Line: Consumes 10 of 75 Charges on use
     const tLeft = `Consumes `
     const value1 = item.charges.consumes
     let tMiddle = ` of `
@@ -376,8 +373,7 @@ export async function renderItem(item) {
     ctx.fillStyle = color.grey
     ctx.fillText(tMiddle, (canvas.width/2)+(tLeftWidth/2)+(value1Width/2)-(value2Width/2)-(tRightWidth/2), currentY)
 
-    // value2
-    // not scaleable afaik
+    // value2 (not scaleable afaik)
     ctx.fillStyle = color.white
     ctx.fillText(value2, (canvas.width/2)+(tLeftWidth/2)+(value1Width/2)+(tMiddleWidth/2)-(tRightWidth/2), currentY)
 
@@ -388,18 +384,19 @@ export async function renderItem(item) {
     currentY += lineHeight
   }
 
-  // separator
+  // item level
   if (item.itemLevel) {
+    // separator
     currentY = currentY + separatorMarginTop
     ctx.drawImage(separator, (canvas.width/2)-(separatorWidth/2), currentY)
     currentY = currentY + separatorMarginBottom
 
-    // requirements
     ctx.fillStyle = color.white
     ctx.fillText(`Item Level: ${item.itemLevel}`, canvas.width/2, currentY)
     currentY += lineHeight
   }
 
+  // requirements
   if (item.requirements.level || item.requirements.intelligence || item.requirements.strength || item.requirements.dexterity) {
     ctx.fillStyle = color.grey
 
@@ -490,7 +487,7 @@ export async function renderItem(item) {
     currentY = currentY + separatorMarginBottom
   }
 
-  // draw affixes
+  // explicits
   ctx.fillStyle = color.affix
 
   for (const line of limitText(item.affixes)) {
@@ -510,6 +507,7 @@ export async function renderItem(item) {
     currentY += lineHeight
   }
 
+  // flavor text
   if (item.flavorText) {
     // separator
     currentY = currentY + separatorMarginTop
@@ -528,7 +526,7 @@ export async function renderItem(item) {
     }
   }
 
-  // draw headerMiddle repeatingly until it doesn't fit anymore
+  // header
   let headerMiddleX = 0
   while (headerMiddleX < canvas.width) {
     ctx.drawImage(headerMiddle, headerMiddleX, 0, headerWidth, headerHeight)
