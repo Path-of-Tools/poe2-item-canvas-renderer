@@ -384,12 +384,13 @@ export async function renderItem(item) {
     currentY += lineHeight
   }
 
+  // separator
+  currentY = currentY + separatorMarginTop
+  ctx.drawImage(separator, (canvas.width/2)-(separatorWidth/2), currentY)
+  currentY = currentY + separatorMarginBottom
+
   // item level
   if (item.itemLevel) {
-    // separator
-    currentY = currentY + separatorMarginTop
-    ctx.drawImage(separator, (canvas.width/2)-(separatorWidth/2), currentY)
-    currentY = currentY + separatorMarginBottom
 
     ctx.fillStyle = color.white
     ctx.fillText(`Item Level: ${item.itemLevel}`, canvas.width/2, currentY)
@@ -440,10 +441,12 @@ export async function renderItem(item) {
     currentY += lineHeight
   }
 
-  // separator
-  currentY = currentY + separatorMarginTop
-  ctx.drawImage(separator, (canvas.width/2)-(separatorWidth/2), currentY)
-  currentY = currentY + separatorMarginBottom
+  if (item.itemLevel || item.requirements.level || item.requirements.intelligence || item.requirements.strength || item.requirements.dexterity) {
+    // separator
+    currentY = currentY + separatorMarginTop
+    ctx.drawImage(separator, (canvas.width/2)-(separatorWidth/2), currentY)
+    currentY = currentY + separatorMarginBottom
+  }
 
   // enchants
   if (item.enchants.length) {
@@ -506,6 +509,13 @@ export async function renderItem(item) {
     ctx.fillText('Corrupted', canvas.width/2, currentY)
     currentY += lineHeight
   }
+
+    // unidentified
+    if (!item.identified) {
+      ctx.fillStyle = color.corrupted
+      ctx.fillText('Unidentified', canvas.width/2, currentY)
+      currentY += lineHeight
+    }
 
   // flavor text
   if (item.flavorText) {
