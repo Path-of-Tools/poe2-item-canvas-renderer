@@ -6,6 +6,6 @@
   "license": "MIT",
   "dependencies": {
     "canvas": "^3.0.1",
-    "poe-item-parser": "^1.1"
+    "poe-item-parser": "^1.2"
   }
 }

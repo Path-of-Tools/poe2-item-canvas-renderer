@@ -34,7 +34,7 @@ const color = {
 function limitFlavorText(flavorText) {
   // nothing to do
   if (!flavorText || flavorText.flavorText.length <= 90 || flavorText.lines.length > 1) {
-    return flavorText;
+    return flavorText
   }
 
   const words = flavorText.flavorText.split(' ')
@@ -282,7 +282,7 @@ export async function renderItem(item) {
   ]) {
     if (line.name === 'Elemental Damage') {
       drawElementalDamage(line.name)
-      continue;
+      continue
     }
 
     // draw base stats
