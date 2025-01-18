@@ -1,0 +1,12 @@
+Item Class: Tablet
+Rarity: Magic
+Plundering Breach Precursor Tablet of Fissuring
+--------
+Item Level: 79
+--------
+10 Maps in Range contain Breaches (implicit)
+--------
+Your Maps which contain Breaches have 8% chance to contain an additional Breach
+10% increased Quantity of Items found in your Maps
+--------
+Can be used in a completed Tower on your Atlas to influence surrounding Maps. Tablets are consumed once placed into a Tower.

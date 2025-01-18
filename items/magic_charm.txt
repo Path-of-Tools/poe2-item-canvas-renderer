@@ -1,0 +1,20 @@
+Item Class: Charms
+Rarity: Magic
+Experimenter's Golden Charm of the Brewer
+--------
+Lasts 1,40 (augmented) Seconds
+Consumes 57 (augmented) of 80 Charges on use
+Currently has 80 Charges
+20% increased Rarity of Items found
+--------
+Requirements:
+Level: 62
+--------
+Item Level: 82
+--------
+Used when you Kill a Rare or Unique Enemy (implicit)
+--------
+36% increased Duration
+28% reduced Charges per use
+--------
+Used automatically when condition is met. Can only hold charges while in belt. Refill at Wells or by killing monsters.

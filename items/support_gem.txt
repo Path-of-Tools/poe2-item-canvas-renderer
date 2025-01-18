@@ -1,0 +1,14 @@
+Item Class: Support Gems
+Rarity: Gem
+Inspiration
+--------
+Support
+--------
+Requirements:
++5 Str: (15)
+--------
+Supports any skill, making it cost less to use. Cannot support skills which reserve Spirit.
+--------
+Place into a Skill's Support Gem socket in the Skills Panel to apply its effects to that Skill. You cannot have multiple copies of the same Support Gem socketed at the same time.
+--------
+ Strength

@@ -1,0 +1,9 @@
+Item Class: Tablet
+Rarity: Normal
+Breach Precursor Tablet
+--------
+Item Level: 79
+--------
+5 Maps in Range contain Breaches (implicit)
+--------
+Can be used in a completed Tower on your Atlas to influence surrounding Maps. Tablets are consumed once placed into a Tower.
