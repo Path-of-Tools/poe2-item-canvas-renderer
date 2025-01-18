@@ -513,9 +513,12 @@ export async function renderItem(item) {
   }
 
   // separator
-  currentY = currentY + separatorMarginTop
-  ctx.drawImage(separator, (canvas.width/2)-(separatorWidth/2), currentY)
-  currentY = currentY + separatorMarginBottom
+  if ((item.itemClass !== "Breachstones") &&
+      (item.itemClass !== "Map Fragments")) {
+    currentY = currentY + separatorMarginTop
+    ctx.drawImage(separator, (canvas.width/2)-(separatorWidth/2), currentY)
+    currentY = currentY + separatorMarginBottom
+  }
 
   // area level
   if (item.areaLevel) {
@@ -606,8 +609,6 @@ export async function renderItem(item) {
 
     currentY += lineHeight
   }
-
-  // if (item.itemClass === 'Waystones' && item.) {}
 
   // special case: magic ultimatum trials and normal started sanctum trials
   if ((item.areaLevel || item.numberOfTrials || item.sanctum?.minorBoons || item.sanctum?.majorBoons || item.sanctum?.minorAfflictions || item.sanctum?.majorAfflictions) &&

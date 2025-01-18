@@ -1,0 +1,8 @@
+Item Class: Omen
+Rarity: Currency
+Omen of Dextral Alchemy
+--------
+While this item is active in your inventory your next
+Orb of Alchemy will result in the maximum number of suffix modifiers
+--------
+Right click this item in your inventory to set it to be active. This item is consumed when triggered.

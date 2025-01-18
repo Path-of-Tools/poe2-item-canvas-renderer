@@ -1,0 +1,11 @@
+Item Class: Socketable
+Rarity: Currency
+Soul Core of Jiquani
+--------
+Stack Size: 3/10
+--------
+Martial Weapon: Recover 2% of Life on Kill
+Armour: 2% increased maximum Life
+--------
+Place into an empty Rune Socket in a Martial Weapon or Armour to apply its effect to that item. Once socketed it cannot be removed.
+Shift click to unstack.

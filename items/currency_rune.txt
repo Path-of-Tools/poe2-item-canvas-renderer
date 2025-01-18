@@ -1,0 +1,11 @@
+Item Class: Socketable
+Rarity: Currency
+Iron Rune
+--------
+Stack Size: 32/10
+--------
+Martial Weapon: 20% increased Physical Damage
+Armour: 20% increased Armour, Evasion and Energy Shield
+--------
+Place into an empty Rune Socket in a Martial Weapon or Armour to apply its effect to that item. Once socketed it cannot be removed.
+Shift click to unstack.

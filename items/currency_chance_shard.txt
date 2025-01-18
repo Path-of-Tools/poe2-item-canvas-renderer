@@ -1,0 +1,7 @@
+Item Class: Stackable Currency
+Rarity: Currency
+Chance Shard
+--------
+Stack Size: 1/10
+--------
+A stack of 10 shards becomes an Orb of Chance.
