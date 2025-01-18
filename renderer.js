@@ -139,10 +139,10 @@ function resizeCanvasWithoutClearing(canvas, newWidth, newHeight) {
 
 export async function renderItem(item) {
   registerFont(__dirname + '/assets/fontin-smallcaps-webfont.ttf', { family: 'FontinSmallCaps' })
-  const separator = await loadImage(__dirname + `/assets/separator-${item.itemRarity}.png`)
-  const headerMiddle = await loadImage(__dirname + `/assets/header-${item.itemRarity}-middle.png`)
-  const headerLeft = await loadImage(__dirname + `/assets/header-${item.itemRarity}-left.png`)
-  const headerRight = await loadImage(__dirname + `/assets/header-${item.itemRarity}-right.png`)
+  const separator = await loadImage(__dirname + `/assets/separator-${item.itemRarity.toLowerCase()}.png`)
+  const headerMiddle = await loadImage(__dirname + `/assets/header-${item.itemRarity.toLowerCase()}-middle.png`)
+  const headerLeft = await loadImage(__dirname + `/assets/header-${item.itemRarity.toLowerCase()}-left.png`)
+  const headerRight = await loadImage(__dirname + `/assets/header-${item.itemRarity.toLowerCase()}-right.png`)
 
   let headerHeight = headerLeft.height
   let headerWidth = headerLeft.width
