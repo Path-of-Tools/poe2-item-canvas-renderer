@@ -1,0 +1,18 @@
+Item Class: Mana Flasks
+Rarity: Magic
+Dense Ultimate Mana Flask of the Sylvan
+--------
+Quality: +11% (augmented)
+Recovers 344 (augmented) Mana over 2,10 (augmented) Seconds
+Consumes 10 of 75 Charges on use
+Currently has 0 Charges
+--------
+Requirements:
+Level: 60
+--------
+Item Level: 68
+--------
+42% increased Recovery rate
+Gains 0.25 Charges per Second
+--------
+Right click to drink. Can only hold charges while in belt. Refill at Wells or by killing monsters.

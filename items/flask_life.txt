@@ -1,0 +1,18 @@
+Item Class: Life Flasks
+Rarity: Magic
+Viscous Ultimate Life Flask of the Apprentice
+--------
+Quality: +20% (augmented)
+Recovers 1104 (augmented) Life over 1,90 (augmented) Seconds
+Consumes 8 (augmented) of 75 Charges on use
+Currently has 75 Charges
+--------
+Requirements:
+Level: 60
+--------
+Item Level: 80
+--------
+57% increased Recovery rate
+16% reduced Charges per use
+--------
+Right click to drink. Can only hold charges while in belt. Refill at Wells or by killing monsters.
